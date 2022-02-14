@@ -50,7 +50,7 @@ class ArtigoController extends Controller
         // Guardar el artículo en la base de datos
         Artigo::create($request->all());
 
-        return back()->with('success', 'El artículo de ha guardado correctamente en la base de datos.');
+        return back()->with('success', 'El artículo se ha guardado correctamente en la base de datos.');
     }
 
     /**
@@ -72,7 +72,7 @@ class ArtigoController extends Controller
      */
     public function edit(Artigo $artigo)
     {
-        return view('blog.article.edit');
+        return view('blog.article.edit', ['artigo' => $artigo]);
     }
 
     /**
@@ -84,7 +84,11 @@ class ArtigoController extends Controller
      */
     public function update(Request $request, Artigo $artigo)
     {
-        //
+        // Validación del artículo
+        $this->validate($request, [
+                    'titulo' => 'required',
+                    'texto' => 'required'
+                ]);
     }
 
     /**
@@ -95,6 +99,6 @@ class ArtigoController extends Controller
      */
     public function destroy(Artigo $artigo)
     {
-        //
+        // Artigo::destroy();
     }
 }

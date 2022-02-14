@@ -40,6 +40,11 @@ Route::delete('/artigo/borrar/{artigo}', [ArtigoController::class, 'destroy'])->
 Route::get('/contacto', [ContactController::class, 'index'])->name('contacto');
 Route::put('/contacto', [ContactController::class, 'store'])->name('contacto.store');
 
+// Rutas para mayores de 18 años
+Route::get('/mayores', function() {
+
+});
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');

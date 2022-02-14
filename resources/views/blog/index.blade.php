@@ -8,7 +8,7 @@
                 </a>
             </h2>
         </div>
-        <div class="mb-8">{!! $artigo->texto !!}</div>
+        <div class="mb-8 leading-6">{!! Str::limit($artigo->texto, 150) !!}</div>
     </div>
     @endforeach
 </x-guest-layout>
