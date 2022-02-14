@@ -16,8 +16,14 @@ class MayorDeEdad
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request == $request) {
-            return redirect('home');
+        $edad = (int) $request->edad;
+
+        if (!isset($edad) || !$edad) {
+            return redirect('pedir-edad');
+        }
+        
+        if ($edad < 18) {
+            return redirect(route('no-autorizado'));
         }
         
         return $next($request);

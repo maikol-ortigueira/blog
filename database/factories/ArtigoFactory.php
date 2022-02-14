@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 
 class ArtigoFactory extends Factory
 {
@@ -13,9 +14,13 @@ class ArtigoFactory extends Factory
      */
     public function definition()
     {
+        $users = [1,2,3,4,5];
+        
         return [
-            'titulo' => $this->faker->text(40),
-            'texto' => '<p>' . implode('</p><p>', $this->faker->paragraphs(15)) . '</p>'
+            'titulo' => $this->faker->realText(40),
+            'texto' => '<p>' . $this->faker->realText(400) . '</p>',
+            'data_publicacion' => $this->faker->date(),
+            'user_id' => Arr::random($users)
         ];
     }
 }

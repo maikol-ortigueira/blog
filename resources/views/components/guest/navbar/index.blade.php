@@ -11,8 +11,8 @@
             <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
                 {{-- Items de menú --}}
                 <x-guest.navbar.item text="{{ __('Home') }}" link="{{ route('home') }}" current="true" />
-                <x-guest.navbar.item text="{{ __('Blog') }}" link="{{ route('blog') }}" />
-                <x-guest.navbar.item text="{{ __('Contact') }}" link="contacto" />
+                <x-guest.navbar.item text="{{ __('Blog') }}" link="{{ route('artigos.index') }}" />
+                <x-guest.navbar.item text="{{ __('Contact') }}" link=" {{ route('contacto') }}" />
                 {{-- Items condicionados a la autorización según tipo de usuario --}}
                 @if (Route::has('login'))
                     @auth
