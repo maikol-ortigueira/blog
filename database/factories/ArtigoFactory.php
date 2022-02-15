@@ -15,7 +15,7 @@ class ArtigoFactory extends Factory
     public function definition()
     {
         $users = [1,2,3,4,5];
-        
+
         return [
             'titulo' => $this->faker->realText(40),
             'texto' => '<p>' . $this->faker->realText(400) . '</p>',

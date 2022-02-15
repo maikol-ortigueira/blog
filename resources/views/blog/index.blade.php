@@ -3,7 +3,7 @@
     <div class="mb-4 mx-28">
         <div class="text-xl mb-2 text-green-700">
             <h2>
-                <a href="/artigos/{{ $artigo->id }}">
+                <a href=" {{ route('artigos.show', $artigo) }} ">
                 {{-- <a href="{{ route(artigos.show) }}"> --}}
                     {{ $artigo->titulo }}
                 </a>

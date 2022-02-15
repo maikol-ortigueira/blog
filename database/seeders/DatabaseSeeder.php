@@ -25,7 +25,3 @@ class DatabaseSeeder extends Seeder
         });
     }
 }
-
-// $user->roles()->attach(
-//     $roles->random(rand(1, 3))->pluck('id')->toArray()
-// ); 

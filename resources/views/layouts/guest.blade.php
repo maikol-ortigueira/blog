@@ -14,9 +14,11 @@
     <!-- Styles -->
     {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
     <script src="https://cdn.tailwindcss.com"></script>
+    @stack('styles')
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+    @stack('scripts-top')
 </head>
 
 <body class="bg-gray-100 dark:bg-gray-900">
@@ -30,7 +32,7 @@
         </div>
     </div>
     <x-guest.footer :footer="$footer" />
-
+    @stack('scripts')
     <script src="https://unpkg.com/flowbite@1.3.3/dist/flowbite.js"></script>
 </body>
 

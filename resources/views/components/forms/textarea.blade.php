@@ -7,8 +7,14 @@ $class = 'block p-2.5 w-full text-sm rounded-lg border ' . $class;
 @endphp
 <label for="{{ $field }}"
     class="block mb-2 text-sm font-medium {{ $errors->has($field) ? 'text-red-700 dark:text-red-500' : 'text-gray-900 dark:text-gray-400' }}">{{ $label }}{{ $required ? '(*)' : '' }}</label>
-<textarea id="{{ $field }}" name="{{ $field }}" rows="4" class="{{ $class }}"
-    placeholder="{{ $placeholder ?? $label }}" {{ $required ? ' required' : '' }}>{{ old($field) }}</textarea>
+<textarea
+    id="{{ $field }}"
+    name="{{ $field }}"
+    rows="4"
+    class="{{ $class }}"
+    placeholder="{{ $placeholder ?? $label }}" {{ $required ? ' required' : '' }}>
+        {{ $slot ?? old($field) }}
+    </textarea>
 @error($field)
     <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ $message }}!!
     </p>

@@ -49,7 +49,7 @@ class ArtigoController extends Controller
 
         // Guardar el artículo en la base de datos
         Artigo::create($request->all());
-        
+
         return back()->with('success', 'El artículo se ha guardado correctamente en la base de datos.');
     }
 
@@ -89,8 +89,10 @@ class ArtigoController extends Controller
             'titulo' => 'required',
             'texto' => 'required'
         ]);
-
+//ddd($request->etiquetas);
         $artigo->update($request->all());
+
+        $artigo->etiquetas()->sync($request->etiquetas);
 
         return back()->with('success', 'El artículo se ha actualizado correctamente.');
     }

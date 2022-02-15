@@ -20,7 +20,9 @@ Route::get('/', function () { return view('welcome');})->name('home');
 
 // Rutas para el blog
 // El middleware se gestiona directamente en el controlador ArtigoController
-Route::resources(['artigos' => ArtigoController::class]);
+// @see https://laravel.com/docs/9.x/controllers#actions-handled-by-resource-controller
+// para ver como se generan automáticamente las urls asociadas al controlador ArtigoController
+Route::resource('artigos', ArtigoController::class);
 
 // Rutas del formulario de contacto
 Route::get('/contacto', [ContactController::class, 'index'])->name('contacto');

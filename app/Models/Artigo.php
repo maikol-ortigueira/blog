@@ -9,7 +9,11 @@ class Artigo extends Model
 {
     use HasFactory;
 
-    public function user()
+    protected $with = ['etiquetas', 'autor'];
+
+    protected $fillable = ['titulo', 'texto'];
+
+    public function autor()
     {
         return $this->belongsTo(User::class);
     }

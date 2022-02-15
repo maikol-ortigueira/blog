@@ -6,9 +6,15 @@ $class = $errors->has($field) ? 'bg-red-50 border border-red-500 text-red-900 pl
     <label for="{{ $field }}" class="text-sm {{ $errors->has($field) ? 'text-red-700 dark:text-red-500' : 'text-gray-900 dark:text-gray-400' }}">
         {{ $label }}{{ $required ? '(*)' : '' }}
     </label>
-    <input type="{{ $field }}" id="{{ $field }}" name="{{ $field }}" class="{{ $class }}"
-        placeholder="{{ $placeholder ?? $label }}" {{ $required ? ' required' : '' }} value="{{ old($field) }}">
+    <input
+        type="{{ $field }}"
+        id="{{ $field }}"
+        name="{{ $field }}"
+        class="{{ $class }}"
+        placeholder="{{ $placeholder ?? $label }}" {{ $required ? ' required' : '' }}
+        {{ $attributes(['value' => old($field)]) }}>
     @error($field)
         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">Oops!</span> {{ $message }}!!</p>
     @enderror
 </div>
+
