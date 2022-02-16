@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artigo;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class ArtigoController extends Controller
@@ -18,8 +19,16 @@ class ArtigoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($etiqueta = $request->input('etiqueta'))
+        {
+            $artigos = Artigo::whereHas('etiquetas', function(Builder $query) use ($etiqueta) {
+                $query->where('id', '=', $etiqueta);
+            })->get();
+//ddd($artigos);
+            return view('blog.index', ['artigos' => $artigos]);
+        }
         return view('blog.index', ['artigos' => Artigo::all()]);
     }
 

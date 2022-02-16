@@ -13,6 +13,8 @@ class Artigo extends Model
 
     protected $fillable = ['titulo', 'texto'];
 
+    protected $dates = ['created_at', 'updated_at', 'data_publicacion'];
+
     public function autor()
     {
         return $this->belongsTo(User::class);
