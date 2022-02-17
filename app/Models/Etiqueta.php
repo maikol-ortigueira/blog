@@ -9,6 +9,8 @@ class Etiqueta extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['nombre'];
+
     public function artigos ()
     {
         return $this->belongsToMany(Artigo::class);

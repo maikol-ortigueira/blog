@@ -11,8 +11,6 @@ class Artigo extends Model
 
     protected $with = ['etiquetas', 'autor'];
 
-    //protected $fillable = ['titulo', 'texto', 'user_id'];
-
     protected $guarded = [];
 
     protected $dates = [

@@ -29,7 +29,6 @@
 
 </div>
 
-
 <style>
     .custom-label input:checked+svg {
         display: block !important;

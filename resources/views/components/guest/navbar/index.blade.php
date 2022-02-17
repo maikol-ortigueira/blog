@@ -13,11 +13,14 @@
                 <x-guest.navbar.item text="{{ __('Home') }}" link="{{ route('home') }}" current="true" />
                 <x-guest.navbar.item text="{{ __('¿Eres mayor?') }}" link="{{ route('filtro.edad') }}" />
                 <x-guest.navbar.item text="{{ __('Blog') }}" link="{{ route('artigos.index') }}" />
+                @auth
+                    <x-guest.navbar.item text="{{ __('Tags') }}" link="{{ route('etiquetas.index') }}" />
+                @endauth
                 <x-guest.navbar.item text="{{ __('Contact') }}" link=" {{ route('contacto') }}" />
                 {{-- Items condicionados a la autorización según tipo de usuario --}}
                 @if (Route::has('login'))
                     @auth
-                    <x-guest.navbar.item text="{{ __('Dashboard') }}" link="{{ url('/dashboard') }}" />
+                        <x-guest.navbar.item text="{{ __('Dashboard') }}" link="{{ url('/dashboard') }}" />
                     @else
                         <x-guest.navbar.item text="{{ __('Login') }}" link="{{ route('login') }}" />
                         @if (Route::has('register'))

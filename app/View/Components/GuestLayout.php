@@ -31,7 +31,8 @@ class GuestLayout extends Component
                 ],
                 [
                     'text' => 'Terms & Conditions',
-                    'link' => 'terms-of-service'
+                    'link' => 'terms-of-service',
+                    'target' => '_self'
                 ],
             ],
         ]
