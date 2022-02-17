@@ -12,8 +12,17 @@
             <x-forms.input field="titulo" label="Título" :value="old('titulo', $artigo->titulo)" />
             <x-forms.textarea field="texto" label="Texto"> {{ old('texto', $artigo->texto) }} </x-forms.textarea>
             <x-tags :etiquetas="old('etiquetas', $artigo->etiquetas)" />
-            <div class="mt-5 text-right">
-                <x-buttons.primary>{{ __('Save') }}</x-buttons.primary>
+            <div class="text-right">
+                <x-buttons.group>
+                    <x-buttons.index position="first" href="true" link="{{ route('artigos.show', $artigo) }}">
+                        <x-svgs.check-circle />
+                        {{ __('Close') }}
+                    </x-buttons.index>
+                    <x-buttons.index position="last" >
+                        <x-svgs.save />
+                        {{ __('Save') }}
+                    </x-buttons.index>
+                </x-buttons.group>
             </div>
         </form>
     </x-section>

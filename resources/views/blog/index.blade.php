@@ -10,6 +10,17 @@
             </h2>
         </div>
         <div class="mb-8 leading-6">{!! Str::limit($artigo->texto, 150) !!}</div>
+        <div class="">
+            <div class="">
+                {{ __('Publicado ') }}{{ $artigo->data_publicacion->diffForHumans() }}
+            </div>
+        </div>
+        <div class="">
+            <x-blog.list-tags :etiquetas="$artigo->etiquetas" />
+        </div>
     </div>
     @endforeach
+    <div class="">
+        {{ $artigos->links() }}
+    </div>
 </x-guest-layout>

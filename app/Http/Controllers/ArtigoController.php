@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artigo;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 
 class ArtigoController extends Controller
 {
+    protected $dates = ['data_publicacion'];
+
     public function __construct()
     {
         // Controlar el acceso a las vistas en función de los permisos de usuario
@@ -18,9 +21,19 @@ class ArtigoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('blog.index', ['artigos' => Artigo::all()]);
+        $artigos = Artigo::orderByDesc('data_publicacion');
+
+        if ($request->has('etiqueta'))
+        {
+            $etiqueta = $request->input('etiqueta');
+            $artigos->whereHas('etiquetas', function(Builder $query) use ($etiqueta) {
+                $query->where('id', $etiqueta);
+            });
+        }
+
+        return view('blog.index', ['artigos' => $artigos->paginate(5)]);
     }
 
     /**
@@ -89,7 +102,7 @@ class ArtigoController extends Controller
             'titulo' => 'required',
             'texto' => 'required'
         ]);
-//ddd($request->etiquetas);
+
         $artigo->update($request->all());
 
         $artigo->etiquetas()->sync($request->etiquetas);
@@ -107,6 +120,6 @@ class ArtigoController extends Controller
     {
         $artigo->delete();
 
-        return back()->with('success', 'Artigo eliminado!');
+        return redirect()->route('artigos.index')->with('success', 'Artigo eliminado!');
     }
 }
