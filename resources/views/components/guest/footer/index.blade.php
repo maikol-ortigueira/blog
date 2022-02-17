@@ -5,7 +5,7 @@
         <div class="mb-6 md:mb-0">
             <a href="https://flowbite.com" target="_blank" class="flex items-center">
                 <x-jet-application-logo />
-                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Flowbite</span>
+                <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">Ferro</span>
             </a>
         </div>
         {{-- Los datos de los menús del footer se configuran en App\View\Components\GuestLayout --}}

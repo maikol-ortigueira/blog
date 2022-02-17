@@ -10,28 +10,24 @@ class GuestLayout extends Component
         'menus' => [
             'resources' => [
                 [
-                    'text' => 'Flowbite',
-                    'link' => 'http://flowbite.com'
+                    'text' => 'Rodolfo Ucha Piñeiro',
+                    'link' => 'https://www.cifprodolfoucha.es/',
                 ],
                 [
-                    'text' => 'Tailwind',
-                    'link' => 'http://tailwind.com'
+                    'text' => 'Maikol Fustes',
+                    'link' => 'http://maikol.eu',
                 ],
             ],
             'Follow us' => [
                 [
                     'text' => 'github',
-                    'link' => 'http://github.com'
-                ],
-                [
-                    'text' => 'Discord',
-                    'link' => 'http://discord.com'
+                    'link' => 'https://github.com/dwcs-ucha/grupo02-21',
                 ],
             ],
             'Legal' => [
                 [
                     'text' => 'Privacy Policy',
-                    'link' => 'privacy-policy'
+                    'link' => 'privacy-policy',
                 ],
                 [
                     'text' => 'Terms & Conditions',

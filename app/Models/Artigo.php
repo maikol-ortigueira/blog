@@ -11,7 +11,9 @@ class Artigo extends Model
 
     protected $with = ['etiquetas', 'autor'];
 
-    protected $fillable = ['titulo', 'texto'];
+    //protected $fillable = ['titulo', 'texto', 'user_id'];
+
+    protected $guarded = [];
 
     protected $dates = [
         'created_at',
@@ -28,4 +30,5 @@ class Artigo extends Model
     {
         return $this->belongsToMany(Etiqueta::class);
     }
+
 }

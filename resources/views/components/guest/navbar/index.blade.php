@@ -3,7 +3,7 @@
         <a href="{{ route('home') }}" class="flex">
             {{-- El logo está en un componente --}}
             <x-jet-application-logo />
-            <span class="self-center text-lg font-semibold whitespace-nowrap dark:text-white">Ferrol</span>
+            <span class="self-center text-lg font-semibold whitespace-nowrap dark:text-white">Ferro</span>
         </a>
         {{-- Importar botón tipo hamburguesa para la versión responsive --}}
         <x-guest.navbar.responsive-button />
@@ -11,6 +11,7 @@
             <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
                 {{-- Items de menú --}}
                 <x-guest.navbar.item text="{{ __('Home') }}" link="{{ route('home') }}" current="true" />
+                <x-guest.navbar.item text="{{ __('¿Eres mayor?') }}" link="{{ route('filtro.edad') }}" />
                 <x-guest.navbar.item text="{{ __('Blog') }}" link="{{ route('artigos.index') }}" />
                 <x-guest.navbar.item text="{{ __('Contact') }}" link=" {{ route('contacto') }}" />
                 {{-- Items condicionados a la autorización según tipo de usuario --}}

@@ -25,8 +25,8 @@ Route::get('/', function () { return view('welcome');})->name('home');
 Route::resource('artigos', ArtigoController::class);
 
 // Rutas del formulario de contacto
-Route::get('/contacto', [ContactController::class, 'index'])->name('contacto');
-Route::put('/contacto', [ContactController::class, 'store'])->name('contacto.store');
+Route::get('contacto', [ContactController::class, 'index'])->name('contacto');
+Route::put('contacto', [ContactController::class, 'store'])->name('contacto.store');
 
 // Rutas para mayores de 18 años
 Route::middleware('mayor.edad')->get('/mayores', function() {
@@ -35,12 +35,15 @@ Route::middleware('mayor.edad')->get('/mayores', function() {
 
 Route::get('/pedir-edad', function() {
     return view('pedir-edad');
-})->name('pedir-edad');
+})->name('filtro.edad');
 
+// Ruta no autorizado (se muestra si el usuario no es mayor de 18 años)
+Route::get('no-autorizado', function () {
+    return view('no-autorizado');
+})->name('no-autorizado');
+
+// Ruta usuarios registrados
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('no-autorizado', function () {
-    return view('no-autorizado');
-})->name('no-autorizado');

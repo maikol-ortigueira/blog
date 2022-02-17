@@ -1,7 +1,13 @@
 @props(['etiquetas'])
+@if ($etiquetas !== "null")
 @php
-    $etiquetas = $etiquetas->pluck('id')->toArray();
-@endphp
+        $etiquetas = $etiquetas->pluck('id')->toArray();
+        @endphp
+@else
+    @php
+        $etiquetas = [];
+    @endphp
+@endif
 <!-- Change the size of the container "max-w-full", ideally to w-1/6-->
 <div class="container max-w-full mt-6 text-base font-sans">
 
@@ -12,7 +18,8 @@
         @foreach (\App\Models\Etiqueta::all() as $etiqueta)
             <label class="custom-label flex mt-2 ml-3">
                 <div class="bg-white shadow w-6 h-6 p-1 flex justify-center items-center mr-2">
-                    <input type="checkbox" name="etiquetas[]" class="hidden" {{ in_array($etiqueta->id, $etiquetas) ? 'checked' : '' }} value="{{ $etiqueta->id }}">
+                    <input type="checkbox" name="etiquetas[]" class="hidden"
+                        {{ in_array($etiqueta->id, $etiquetas) ? 'checked' : '' }} value="{{ $etiqueta->id }}">
                     <x-svgs.tags-check />
                 </div>
                 <span class="select-none"> {{ $etiqueta->nombre }}</span>

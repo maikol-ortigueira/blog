@@ -23,8 +23,11 @@ class ArtigoController extends Controller
      */
     public function index(Request $request)
     {
+
+        // Ordenar por la fecha de publicación del artículo
         $artigos = Artigo::orderByDesc('data_publicacion');
 
+        // Si lo solicitan, devolver resultados por etiqueta
         if ($request->has('etiqueta'))
         {
             $etiqueta = $request->input('etiqueta');
@@ -33,6 +36,7 @@ class ArtigoController extends Controller
             });
         }
 
+        // Mostrar 5 artículos con paginación
         return view('blog.index', ['artigos' => $artigos->paginate(5)]);
     }
 
@@ -43,7 +47,7 @@ class ArtigoController extends Controller
      */
     public function create()
     {
-        return view('blog.article.create');
+        return view('blog.article.edit');
     }
 
     /**
@@ -52,18 +56,23 @@ class ArtigoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Artigo $artigo)
     {
         // Validación del artículo
-        $this->validate($request, [
+        $data = $this->validate($request, [
             'titulo' => 'required',
             'texto' => 'required'
         ]);
 
-        // Guardar el artículo en la base de datos
-        Artigo::create($request->all());
+        $data['data_publicacion'] = now();
+        $data['user_id'] = request()->user()->id;
 
-        return back()->with('success', 'El artículo se ha guardado correctamente en la base de datos.');
+        // Guardar el artículo en la base de datos
+        $artigo = $artigo->create($data);
+        $artigo->etiquetas()->sync($request->etiquetas);
+
+        $id = $artigo->id;
+        return redirect(route('artigos.edit', $id))->with('success', 'El artículo se ha guardado correctamente en la base de datos.');
     }
 
     /**
@@ -98,13 +107,12 @@ class ArtigoController extends Controller
     public function update(Request $request, Artigo $artigo)
     {
         // Validación del artículo
-        $this->validate($request, [
+        $data = $this->validate($request, [
             'titulo' => 'required',
             'texto' => 'required'
         ]);
 
-        $artigo->update($request->all());
-
+        $artigo->update($data);
         $artigo->etiquetas()->sync($request->etiquetas);
 
         return back()->with('success', 'El artículo se ha actualizado correctamente.');
